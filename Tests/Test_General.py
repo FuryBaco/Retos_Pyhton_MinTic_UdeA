@@ -21,3 +21,15 @@ def above(cat, loct):
 data_nuevo['above_avg_temp'] = above(int(0), 'temperature')
 data_nuevo['above_avg_pres'] = above(int(1), 'pressure')
 data_nuevo.to_csv(r'data_nuevo.csv', index=False)
+'''data_nuevo['above_avg_temp'] = data_nuevo.apply(
+    lambda n: 'SI' if n.temperature > d_to_json[str(n.location)][0] else 'NO'
+    if n.temperature < d_to_json[str(n.location)][0] else 'IGUAL',
+    axis=1)
+data_nuevo['above_avg_pres'] = data_nuevo.apply(
+    lambda n: 'SI' if n.pressure > d_to_json[str(n.location)][1] else 'NO'
+    if n.pressure < d_to_json[str(n.location)][1] else 'IGUAL',
+    axis=1)'''
+
+
+
+
