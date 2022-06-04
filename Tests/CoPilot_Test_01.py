@@ -5,8 +5,8 @@ import numpy as np
 #Importar data.csv
 data = pd.read_csv('data.csv')
 
-#calcular el prmedio de la temperatura para la location 1
+#calcular el prmedio de cada temperatura para cada location y guardarlo en un diccionario
 
-mean_temp_1 = data.loc[data['location'] == 1, 'temperature'].mean()
-print("El promedio de la temperatura de la location 1 es: ", mean_temp_1)
+
+
 
