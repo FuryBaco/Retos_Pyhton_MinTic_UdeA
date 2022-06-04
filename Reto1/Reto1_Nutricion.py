@@ -1,4 +1,5 @@
 def solucion(edad, peso):
+    print(edad,peso)
     edad = int(input('Indicar la edad del paciente: '))
     peso = float(input('indicar el peso del paceinte el kilogramos: '))
     estado_nutricional = 'A'
