@@ -23,6 +23,5 @@ data_nuevo['above_avg_pres'] = data_nuevo.apply(
     lambda n: 'SI' if n.pressure > d_to_json[str(n.location)][1] else 'NO'
     if n.pressure < d_to_json[str(n.location)][1] else 'IGUAL',
     axis=1)
-print(data_nuevo)
 
 data_nuevo.to_csv(r'data_nuevo.csv', index=False)
