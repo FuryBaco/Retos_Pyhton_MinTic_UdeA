@@ -1,34 +1,28 @@
-import json
+#open data.csv and convert to dataframe
 import pandas as pd
-data = pd.read_csv(r'data.csv')
-d_to_json = {}
+import numpy as np
+data = pd.read_csv('data.csv')
+#calculate the average of temperature and pressure 
+avg_temp = data['temperature'].mean()
+avg_pressure = data['pressure'].mean()
+#calculate the standard deviation of temperature and pressure
+std_temp = data['temperature'].std()
+std_pressure = data['pressure'].std()
+#calculate the minimum and maximum of temperature and pressure
+min_temp = data['temperature'].min()
+max_temp = data['temperature'].max()
+#cacluta mean of temperature and pressure based on location
+avg_temp_press_loc = data.groupby('location')['temperature','pressure'].mean()
+#convert avg_temp_press_loc to dictionary
+avg_temp_press_loc_dict = avg_temp_press_loc.to_dict()
+#print the dictionary
+print(avg_temp_press_loc_dict)
+#format the dictionary VALUES to 2 decimal places
 
-def promedio(location):
-    prom = list(data.loc[data['location'] == location][['temperature','pressure']].mean())
-    return float('{0:.1f}'.format(prom[0])), float('{0:.1f}'.format(prom[1]))
-locs = sorted(list(data['location'].unique()))
-for location in locs:
-    d_to_json[str(location)] = promedio(location)
-with open('promedios.json', 'w') as f:
-    json.dump(d_to_json, f)
 
-data_nuevo = data
-def above(cat, loct):
-    return data_nuevo.apply(
-    lambda n: 'SI' if n[loct] > d_to_json[str(n.location)][cat] else 'NO'
-    if n[loct] < d_to_json[str(n.location)][cat] else 'IGUAL',
-    axis=1)
-data_nuevo['above_avg_temp'] = above(int(0), 'temperature')
-data_nuevo['above_avg_pres'] = above(int(1), 'pressure')
-data_nuevo.to_csv(r'data_nuevo.csv', index=False)
-'''data_nuevo['above_avg_temp'] = data_nuevo.apply(
-    lambda n: 'SI' if n.temperature > d_to_json[str(n.location)][0] else 'NO'
-    if n.temperature < d_to_json[str(n.location)][0] else 'IGUAL',
-    axis=1)
-data_nuevo['above_avg_pres'] = data_nuevo.apply(
-    lambda n: 'SI' if n.pressure > d_to_json[str(n.location)][1] else 'NO'
-    if n.pressure < d_to_json[str(n.location)][1] else 'IGUAL',
-    axis=1)'''
+
+
+
 
 
 
