@@ -5,14 +5,14 @@ def solucion():
     #ESTA ES LA FUNCIÓN A LA QUE LE DEBES GARANTIZAR LOS RETORNOS REQUERIDOS EN EL ENUNCIADO.
     import pandas as pd
     from collections import Counter
-    df = pd.read_csv (r'D:\MinTic\Programacion C1\Ejercicios-Python\Retos\Reto5\GLOBANT.csv')
+    df = pd.read_csv (r'GLOBANT.csv')
     d = pd.DataFrame(df)
     da = pd.DataFrame()
 
     da['Fecha'] = d['Date']
     da['Comportamiento de la accion'] = d.apply(lambda n: 'SUBE' if n.Close - n.Open > 0  else 'BAJA' if n.Close - n.Open < 0 else 'ESTABLE', axis=1)
     da['Punto medio HIGH-LOW'] = (d['High'] - d['Low'])/2
-    da.to_csv(r'D:\MinTic\Programacion C1\Ejercicios-Python\Retos\Reto5\analisis_archivo.csv', sep='\t', index=False)
+    da.to_csv(r'analisis_archivo.csv', sep='\t', index=False)
 
     data_set = {"date_lowest_price": [], "lowest_price" : [],"date_highest_price" :[], "highest_price" :[], "cantidad_veces_sube" :[], "cantidad_veces_baja" : [], "cantidad_veces_estable" :[]}
     c = Counter(list(zip(da['Comportamiento de la accion'])))
@@ -24,7 +24,7 @@ def solucion():
     data_set["cantidad_veces_baja" ] = c['BAJA',]
     data_set["cantidad_veces_estable" ] = c['ESTABLE',]
 
-    with open('D:\MinTic\Programacion C1\Ejercicios-Python\Retos\Reto5\detalles.json', 'w') as f:
+    with open('detalles.json', 'w') as f:
       json.dump(data_set, f)
 
 
