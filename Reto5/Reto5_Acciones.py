@@ -24,6 +24,8 @@ def solucion():
     data_set["cantidad_veces_baja" ] = c['BAJA',]
     data_set["cantidad_veces_estable" ] = c['ESTABLE',]
 
+    
+
     with open('detalles.json', 'w') as f:
       json.dump(data_set, f)
 
